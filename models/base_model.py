@@ -1,14 +1,11 @@
 #!/usr/bin/python3
 """This defines the base model"""
 
-
 import uuid
 from datetime import datetime
 from models import storage
 
-
 class BaseModel:
-
     """Class where all other classes inherit from"""
 
     def __init__(self, *args, **kwargs):
@@ -37,8 +34,9 @@ class BaseModel:
 
     def __str__(self):
         """Return string representation of BaseModel."""
-        return "[{}] ({}) {}"
-    .format(self.__class__.__name__, self.id, self.__dict__)
+        return "[{}] ({}) {}".format(
+            self.__class__.__name__, self.id, self.__dict__
+        )
 
     def save(self):
         """Update updated_at attribute with current datetime."""
@@ -48,8 +46,6 @@ class BaseModel:
         """Return dictionary representation of BaseModel."""
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] =
-        self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
-        obj_dict['updated_at'] =
-        self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
+        obj_dict['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
+        obj_dict['updated_at'] = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
         return obj_dict
