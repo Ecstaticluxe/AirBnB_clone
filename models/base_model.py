@@ -5,6 +5,7 @@ import uuid
 from datetime import datetime
 from models import storage
 
+
 class BaseModel:
     """Class where all other classes inherit from"""
 
@@ -46,6 +47,11 @@ class BaseModel:
         """Return dictionary representation of BaseModel."""
         obj_dict = self.__dict__.copy()
         obj_dict['__class__'] = self.__class__.__name__
-        obj_dict['created_at'] = self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
-        obj_dict['updated_at'] = self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
+
+        obj_dict['created_at'] = (
+            self.created_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
+        )
+        obj_dict['updated_at'] = (
+            self.updated_at.strftime('%Y-%m-%dT%H:%M:%S.%f')[:-3]
+        )
         return obj_dict
